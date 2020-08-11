@@ -1,4 +1,4 @@
- Analytics Rules build and deploy pipeline
+# Analytics Rules build and deploy pipeline
 # This pipeline publishes the rules file as an artifact and then uses a powershell task to deploy
 
 name: build and deploy Alert Rules
