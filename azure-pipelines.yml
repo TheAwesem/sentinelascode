@@ -32,7 +32,7 @@ stages:
           PathtoPublish: '$(Pipeline.Workspace)'
           ArtifactName: RulesFile
 
-- stage: deploy_alert_rules-eteqtech-la-workspace
+- stage: deploy_alert_rules_eteqtech_la_workspace
   jobs:
     - job: AgentJob
       pool:
@@ -54,7 +54,7 @@ stages:
          azurePowerShellVersion: LatestVersion
          pwsh: true
 
-- stage: deploy_alert_rules-eteqtech-la-test
+- stage: deploy_alert_rules_eteqtech_la_test
   jobs:
     - job: AgentJob
       pool:
