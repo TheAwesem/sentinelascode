@@ -39,7 +39,29 @@ stages:
        name: Azure Pipelines
        vmImage: 'windows-2019'
       variables: 
-      - group: Azure Sentinel Base workspaces
+      - group: eteqtech-la-workspace
+      steps:
+      - download: current
+        artifact: RulesFile
+      - download: Scripts
+        patterns: '*.ps1'
+      - task: AzurePowerShell@4
+        displayName: 'Create and Update Alert Rules'
+        inputs:
+         azureSubscription: 'DevOpsSentinel'
+         ScriptPath: '$(Pipeline.Workspace)/Scripts/Scripts/CreateAnalyticsRulesAPI.ps1'
+         ScriptArguments: '-TenantId $(TenantId) -ClientId $(ClientId) -ClientSecret $(ClientSecret) -SubscriptionId $(SubscriptionId) -ResourceGroup $(ResourceGroup) -Workspace $(Workspace) -RulesFile analytics-rules.json'
+         azurePowerShellVersion: LatestVersion
+         pwsh: true
+
+- stage: deploy_alert_rules
+  jobs:
+    - job: AgentJob
+      pool:
+       name: Azure Pipelines
+       vmImage: 'windows-2019'
+      variables: 
+      - group: eteqtech-la-test
       steps:
       - download: current
         artifact: RulesFile
