@@ -4,7 +4,7 @@
       {
         "kind": "Scheduled",
         "displayName": "AlertRule01",
-        "description": "test",
+        "description": "testing updates",
         "severity": "Low",
         "enabled": true,
         "query": "let starttime = 14d;
